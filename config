@@ -1,0 +1,16 @@
+Host z login mad3 hrlee-lenovo
+    HostName %h.csail.mit.edu
+    ForwardX11 yes
+    User hrlee
+
+Host vlsifarm-01 vlsifarm-02 vlsifarm-03 vlsifarm-04 vlsifarm-05 vlsifarm-06 vlsifarm-07 vlsifarm-08
+    HostName %h.mit.edu
+    ForwardX11 yes
+    User hr_lee
+
+Host miniplaces-aws
+    HostName ec2-54-235-43-26.compute-1.amazonaws.com
+    Port 22
+    User ubuntu
+    IdentityFile ~/amazon-aws.pem
+#ssh -i "amazon-aws.pem" ubuntu@ec2-54-145-151-137.compute-1.amazonaws.com
