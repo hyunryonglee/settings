@@ -14,7 +14,7 @@ set pastetoggle=<F2>            " Set paste/nopaste when pasting
 set wildmode=longest,list       " Bash-like tab to completion 
 set splitright                  " vsplit to the right
 
-"80 line highlihgt
+"80 line highlight
 set colorcolumn=80
 
 " **************************************************************************** "
