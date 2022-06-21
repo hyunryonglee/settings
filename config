@@ -1,16 +1,74 @@
-Host z login mad3 hrlee-lenovo
-    HostName %h.csail.mit.edu
-    ForwardX11 yes
+Host jump.csail.mit.edu
+Match host *.csail.mit.edu,!jump.csail.mit.edu,!login.csail.mit.edu,!bcn2.csail.mit.edu,128.52.*,128.30.*,128.31.* exec ">/dev/null; ! ip addr show | grep -qF 'inet 128.30.'"
+  ProxyJump jump.csail.mit.edu
+  GSSAPIAuthentication yes
+  VerifyHostKeyDNS yes
+  # optional, if X forwarding is desired
+  #ForwardX11 yes
+  #ForwardX11Trusted yes
+  # optional, if your local username does not match YOUR_CSAIL_USERNAME
+  User hrlee
+
+Host *.csail.mit.edu 128.52.* 128.30.* 128.31.*
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+  # optional, if X forwarding is desired
+  #ForwardX11 yes
+  #ForwardX11Trusted yes
+  # optional, if your local username does not match YOUR_CSAIL_USERNAME
+  User hrlee
+
+#Host jump.csail.mit.edu
+#  GSSAPIAuthentication yes
+#  VerifyHostKeyDNS yes
+#  # optional, if X forwarding is desired
+#  #ForwardX11 yes
+#  # optional, if your local username does not match YOUR_CSAIL_USERNAME
+#
+#Host *.csail.mit.edu !jump.csail.mit.edu 128.52.* 128.30.* 128.31.*
+#  ProxyJump jump.csail.mit.edu
+#  GSSAPIAuthentication yes
+#  GSSAPIDelegateCredentials yes
+#  # optional, if X forwarding is desired
+#  #ForwardX11 yes
+#  # optional, if your local username does not match YOUR_CSAIL_USERNAME
+
+# Without relying on system DNS resolver, expand these CSAIL hostnames to FQDNs
+Host z login victory slm1 stg? bcn? mad? mad?? draco? draco?? swarm? fosnode? fosnode?? blb? dobby
+    CanonicalizeHostname always
+    CanonicalizeFallbackLocal no
+    CanonicalDomains csail.mit.edu
+
+Host desktop
+    HostName hrlee-lenovo.csail.mit.edu
     User hrlee
 
 Host vlsifarm-01 vlsifarm-02 vlsifarm-03 vlsifarm-04 vlsifarm-05 vlsifarm-06 vlsifarm-07 vlsifarm-08
     HostName %h.mit.edu
-    ForwardX11 yes
     User hr_lee
 
-Host miniplaces-aws
-    HostName ec2-54-235-43-26.compute-1.amazonaws.com
-    Port 22
+Host eecs-ath-45 eecs-ath-46 eecs-ath-47 eecs-ath-48 eecs-ath-49
+    HostName %h.mit.edu
+    User hr_lee
+
+Host openstack
+    HostName 128.52.162.186
     User ubuntu
-    IdentityFile ~/amazon-aws.pem
-#ssh -i "amazon-aws.pem" ubuntu@ec2-54-145-151-137.compute-1.amazonaws.com
+    IdentityFile ~/.ssh/id_rsa
+
+Host z1d
+    HostName 44.198.78.212 
+    User ubuntu
+    IdentityFile ~/.ssh/Ryanskeypair.pem
+    Port 22
+
+Host c5
+    HostName 3.214.227.236
+    User ubuntu
+    IdentityFile ~/.ssh/Ryanskeypair.pem
+    Port 22
+
+Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
