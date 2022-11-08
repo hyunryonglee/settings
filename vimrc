@@ -3,7 +3,7 @@ set number                      " Set line number
 set relativenumber              " Set relative numbering
 set hlsearch                    " Highlight the search
 set incsearch                   " Incremental search as you type the word
-set smartcase                   " Supposed to search case smartly;no success
+set smartcase                   " Supposed to search case smartly
 set so=999                      " Cursor remains in middle of screen 
 set virtualedit=onemore
 "set wrapmargin=5
@@ -16,6 +16,9 @@ set splitright                  " vsplit to the right
 
 "80 line highlight
 set colorcolumn=80
+
+"Color scheme
+"colorscheme solarized
 
 " **************************************************************************** "
 " Set indent rules
@@ -63,6 +66,7 @@ syntax enable
 filetype on
 au BufNewFile,BufRead *.vl,*.vhd set filetype=verilog
 au BufNewFile,BufRead SCons* set filetype=scons
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
 " **************************************************************************** "
 " Cursor line (highlights the current row/column)
